@@ -1,8 +1,11 @@
 {
   "name": "10-team-profile-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "Team Profile Generator",
   "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/lara-destein13/10-team-profile-generator.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Lara DeStein",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lara-destein13/10-team-profile-generator/issues"
   },
