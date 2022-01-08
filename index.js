@@ -1,22 +1,48 @@
+const fs = require('fs');
 const Employee = require('./src/Employee');
 const Engineer = require('./src/Engineer');
 const Intern = require('./src/Intern');
 const Manager = require('./src/Manager');
 const inquirer = require('inquirer');
 
+const css = `
+<style>
+.employee {
+  display: inline-block;
+  float: left;
+  width: 200px;
+  height: 400px;
+  margin-left: 10px;
+  border: 2px solid blue;
+}
+.employeeHeader {
+  background-color: blue;
+  color: white;
+  padding: 10px;
+}
+</style>
+`;
+
 const template = `
-        <div class="employee">
-            <div class="employeeHeader">
-                <div class"name">NAME</div>
-                <div class"type">TYPE</div>
-            </div>
+    <div class="employee">
+        <div class="employeeHeader">
+            <div class="name">_NAME_</div>
+            <div class="role">_ROLE_</div>
         </div>
+        <div class="employeeDetails">
+            <div class="id">ID: _ID_</div>
+            <div class="email">Email: _EMAIL_</div>
+            <div class="other">_KEY_: _VALUE_</div>
+        </div>
+    </div>
 `;
 
 class Main {
 
   constructor() {
     this.employees = [];
+    this.filename = 'employees.html';
+    fs.writeFileSync(this.filename, '');
   }
   
   async run() {
@@ -41,13 +67,9 @@ class Main {
           console.log('She is a Manager');
           await this.getManager();
           break;
-        default:      
-          console.log('No such employee type');
-          return;
       }
     }
 
-    console.dir(this.employees);
     this.generateHTML();
   }
 
@@ -206,7 +228,8 @@ class Main {
 
   generateHTML() {
     this.emit('<html>');
-    this.emit('   <body>');
+    this.emit(css);
+    this.emit('<body>');
 
     for (let i = 0; i < this.employees.length; i += 1) {
       const employee = this.employees[i];
@@ -214,19 +237,41 @@ class Main {
       this.emit(html);
     }
     
-    this.emit('   </body>');
+    this.emit('</body>');
     this.emit('</html>');
   }
   
   generateEmployeeHTML(employee) {
+    console.dir(employee);
+
     let html = template;
-    html = html.replace('NAME', employee.name);
-    html = html.replace('TYPE', employee.type);
+    html = html.replace('_NAME_', employee.getName());
+    html = html.replace('_ROLE_', employee.getRole());
+    html = html.replace('_ID_', employee.getId());
+    html = html.replace('_EMAIL_', employee.getEmail());
+    let key = '';
+    let value = '';
+    switch(employee.getRole()) {
+      case 'Engineer':
+        key = 'GitHub';
+        value = employee.getGithub();
+        break;
+      case 'Intern':
+        key = 'School';
+        value = employee.getSchool();
+        break;
+      case 'Manager':
+        key = 'Office number';
+        value = employee.getOfficeNumber();
+        break;
+    }
+    html = html.replace('_KEY_', key);
+    html = html.replace('_VALUE_', value);
     return html;
   }
   
   emit(line) {
-    console.log(line);
+    fs.appendFileSync(this.filename, line + '\n');
   }
 }
 
