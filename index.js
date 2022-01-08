@@ -4,6 +4,15 @@ const Intern = require('./src/Intern');
 const Manager = require('./src/Manager');
 const inquirer = require('inquirer');
 
+const template = `
+        <div class="employee">
+            <div class="employeeHeader">
+                <div class"name">NAME</div>
+                <div class"type">TYPE</div>
+            </div>
+        </div>
+`;
+
 class Main {
 
   constructor() {
@@ -39,6 +48,7 @@ class Main {
     }
 
     console.dir(this.employees);
+    this.generateHTML();
   }
 
   async getEmployeeType() {
@@ -193,8 +203,32 @@ class Main {
     const manager = new Manager(name, id, email, officeNumber);
     this.employees.push(manager);
   }
+
+  generateHTML() {
+    this.emit('<html>');
+    this.emit('   <body>');
+
+    for (let i = 0; i < this.employees.length; i += 1) {
+      const employee = this.employees[i];
+      const html = this.generateEmployeeHTML(employee);
+      this.emit(html);
+    }
+    
+    this.emit('   </body>');
+    this.emit('</html>');
+  }
+  
+  generateEmployeeHTML(employee) {
+    let html = template;
+    html = html.replace('NAME', employee.name);
+    html = html.replace('TYPE', employee.type);
+    return html;
+  }
+  
+  emit(line) {
+    console.log(line);
+  }
 }
 
 const main = new Main();
 main.run();
-
