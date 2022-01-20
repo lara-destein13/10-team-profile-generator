@@ -39,6 +39,7 @@ THEN I exit the application, and the HTML is generated
 
 Application runs in the command line. Open terminal, run node index.js, and answer each question when prompted. Once your team is complete, select "done" from the dropdown menu. An object will appear containing your team's profile information. To view your team's profile information in the browser, type "open employee.html" in the command line. 
 
+See link to a walkthorugh video: https://watch.screencastify.com/v/n13s6mgBL6SqXdNHTnIU
 
 ## Contributing
 Made with &hearts; by Lara DeStein
