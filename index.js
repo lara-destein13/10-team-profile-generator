@@ -8,17 +8,30 @@ const inquirer = require('inquirer');
 const css = `
 <style>
 .employee {
+  font-family: Arial, Helvetica, sans-serif;
   display: inline-block;
   float: left;
-  width: 200px;
+  width: 300px;
   height: 400px;
   margin-left: 10px;
-  border: 2px solid blue;
+  line-height: 50px;
+  border: 2px solid #3895D3;
 }
 .employeeHeader {
-  background-color: blue;
+  background-color: #3895D3;
   color: white;
+  font-weight: bold;
   padding: 10px;
+}
+.header {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #072F5F;
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  pading-top: 50px;
+  padding-bottom: 25px;
+  margin: 10px;
 }
 </style>
 `;
