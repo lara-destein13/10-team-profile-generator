@@ -41,5 +41,9 @@ Application runs in the command line. Open terminal, run node index.js, and answ
 
 See link to a walkthorugh video: https://watch.screencastify.com/v/n13s6mgBL6SqXdNHTnIU
 
+<img width="962" alt="Screen Shot 2022-01-20 at 6 07 43 PM" src="https://user-images.githubusercontent.com/88476888/150440694-c30f7a5e-21ae-4265-8794-0c97f1594bd0.png">
+
+
+
 ## Contributing
 Made with &hearts; by Lara DeStein
