@@ -230,6 +230,7 @@ class Main {
     this.emit('<html>');
     this.emit(css);
     this.emit('<body>');
+    this.emit('<header class="header">My Team</header>');
 
     for (let i = 0; i < this.employees.length; i += 1) {
       const employee = this.employees[i];
@@ -241,6 +242,10 @@ class Main {
     this.emit('</html>');
   }
   
+  generateHeader(header) {
+    console.log(header);
+  }
+
   generateEmployeeHTML(employee) {
     console.dir(employee);
 
